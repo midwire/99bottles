@@ -12,29 +12,23 @@ class Wall
 
   private
 
-  def subject
-    @count == 0 ? 'it' : 'one'
-  end
-
-  def remaining
-    @count == 0 ? 'no more' : @count
-  end
-
   def verse_a
     if @count == 0
-      format("No more %s on the wall, no more %s.\n", items, items)
+      "No more #{items} on the wall, no more #{items}.\n"
     else # count > 0
-      format("%d %s on the wall, %d %s.\n", @count, items, @count, items)
+      "#{@count} #{items} on the wall, #{@count} #{items}.\n"
     end
   end
 
   def verse_b
     if @count == 0
       reset_item_count
-      format("Go to the store and buy some more, %d %s on the wall.\n", @count, items)
+      "Go to the store and buy some more, #{@count} #{items} on the wall.\n"
     else # count > 0
+      subject = @count == 1 ? 'it' : 'one'
       decrement_item_count
-      format("Take %s down and pass it around, %s %s on the wall.\n", subject, remaining, items)
+      remaining = @count == 0 ? 'no more' : @count
+      "Take #{subject} down and pass it around, #{remaining} #{items} on the wall.\n"
     end
   end
 
